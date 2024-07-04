@@ -1,40 +1,44 @@
+//ref: https://drken1215.hatenablog.com/entry/2021/10/10/195200
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
 using P = pair<int, int>;
 
+vector<vector<int>> calc_next(const string& S) {
+    int N = (int)S.size();
+
+    vector<vector<int>> res(N + 1, vector<int>(26, N));
+
+    for (int i = N - 1;i >= 0;i--) {
+        res[i] = res[i + 1];
+
+        res[i][S[i] - 'a'] = i;
+    }
+
+    return res;
+}
+
+
 int main()
 {
-    int N, K;
-    cin >> N >> K;
-    string S;
+    int N, K;string S;
+    cin >> N >> K >> S;
 
-    cin >> S;
-    string alphabet = "abcdefghijklmnopqrstuvwxyz";
-    vector<char> alphav(alphabet.begin(), alphabet.end());
-    vector<char> ans;
+    string res = "";
+    auto nex = calc_next(S);
 
-    int next_start_index = 0;
-    int test_cnt = 0;
-    while ((int)ans.size() < K) {
-        int tmp_index;
-        char min = 'z' + 1;
-        for (int i = next_start_index;i < (N - K + (int)ans.size() + 1);i++) {
-            if (S[i] < min) {
-                min = S[i];
-                tmp_index = i;
+    int j = -1;
+    for (int i = 0;i < K;i++) {
+        for (char c = 'a'; c <= 'z'; c++) {
+            int k = nex[j + 1][c - 'a'];
+
+            if (N - k >= K - i) {
+                res += c;
+                j = k;
+                break;
             }
-            test_cnt++;
         }
-        next_start_index = tmp_index + 1;
-        ans.push_back(S[tmp_index]);
     }
 
-    cout << test_cnt << endl;
-
-    for (auto a : ans) {
-        cout << a;
-    }
-    cout << endl;
-
+    cout << res << endl;
 }
