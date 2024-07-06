@@ -21,7 +21,7 @@ struct UnionFind {
 
     bool same(int x, int y) {
         int rx = root(x);
-        int ry = root(y) :
-            return rx == ry;
+        int ry = root(y);
+        return rx == ry;
     }
-}
+};
