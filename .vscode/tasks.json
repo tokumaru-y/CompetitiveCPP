@@ -6,12 +6,9 @@
             "type": "shell",
             "command": "/usr/bin/g++",
             "args": [
-                "-std=gnu++17",
+                "-std=c++17",
                 "-Wall",
                 "-Wextra",
-                "-O2",
-                "-DONLINE_JUDGE",
-                "-I${workspaceFolder}/ac-library",
                 "-o",
                 "'${workspaceFolder}/program'",
                 "'${file}'"
@@ -20,18 +17,18 @@
         },
         {
             "type": "cppbuild",
-            "label": "C/C++: g++ アクティブなファイルのビルド",
+            "label": "build cpp",
             "command": "/usr/bin/g++",
             "args": [
-                "-fdiagnostics-color=always",
+                "-std=c++17",
+                "-O2",
+                "-Wall",
+                "-D_GLIBCXX_DEBUG",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}.out"
+                "${workspaceFolder}/program"
             ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
             "problemMatcher": [
                 "$gcc"
             ],
@@ -39,7 +36,10 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "デバッガーによって生成されたタスク。"
-        }
+            "detail": "compiler: /usr/bin/g++",
+            "presentation": {
+                "focus": true
+            }
+        },
     ]
 }
