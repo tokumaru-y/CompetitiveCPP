@@ -21,7 +21,7 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-std=c++17",
-                "-O2",
+                "-O0",
                 "-Wall",
                 "-D_GLIBCXX_DEBUG",
                 "-g",
