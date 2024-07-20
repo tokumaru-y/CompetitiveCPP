@@ -7,11 +7,11 @@ int Q;
 long double T, L, X, Y, E;
 long double PI = 3.14159265358979;
 
-long double query(long double I) {
+long double query(long double E) {
     long double cx = 0;
     // 角度1度あたり、ラジアンの値はPI / 180.今回は360度のラジアンが欲しいため((I / T) * 360) * PI / 180 = 2.0 * PIとなっている。
-    long double cy = -(L / 2.0) * sin(I / T * 2.0 * PI);
-    long double cz = (L / 2.0) - (L / 2.0) * cos(I / T * 2.0 * PI);
+    long double cy = -(L / 2.0) * sin(E / T * 2.0 * PI);
+    long double cz = (L / 2.0) - (L / 2.0) * cos(E / T * 2.0 * PI);
     long double d1 = sqrt((cx - X) * (cx - X) + (cy - Y) * (cy - Y));
     long double d2 = cz;
     // 返却値はラジアン
