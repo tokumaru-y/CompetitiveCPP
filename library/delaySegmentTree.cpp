@@ -113,6 +113,7 @@ public:
         }
     }
 
+    // [a,b)
     void update(int a, int b, int x, int k = 0, int l = 0, int r = -1) {
         if (r < 0) r = n;
         lazyEvaluate(k, l, r);
