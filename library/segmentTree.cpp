@@ -4,9 +4,9 @@ int const INF = INT_MAX;
 struct SegmentTree {
 private:
     int n;
-    vector<int> node;
+    vector<ll> node;
 public:
-    SegmentTree(vector<int> v) {
+    SegmentTree(vector<ll> v) {
         // 最下段のノード数は元配列のサイズ以上になる最小の 2 冪 -> これを n とおく
         // セグメント木全体で必要なノード数は 2n-1 個である
         int sz = v.size();
@@ -19,7 +19,7 @@ public:
         for (int i = n - 2;i >= 0;i--)node[i] = min(node[2 * i + 1], node[2 * i + 2]);
     }
 
-    void update(int x, int val) {
+    void update(int x, ll val) {
         // 最下段のノードにアクセスする
         x += (n - 1);
 
@@ -42,8 +42,8 @@ public:
         // 要求区間が対象区間の一部を被覆 -> 子について探索を行う
         // 左側の子を vl ・ 右側の子を vr としている
         // 新しい対象区間は、現在の対象区間を半分に割ったもの
-        int vl = getmin(a, b, 2 * k + 1, l, (l + r) / 2);
-        int vr = getmin(a, b, 2 * k + 2, (l + r) / 2, r);
+        ll vl = getmin(a, b, 2 * k + 1, l, (l + r) / 2);
+        ll vr = getmin(a, b, 2 * k + 2, (l + r) / 2, r);
 
         return min(vl, vr);
     }
@@ -54,9 +54,9 @@ public:
 struct SegmentTree {
 private:
     int n;
-    vector<int> node;
+    vector<ll> node;
 public:
-    SegmentTree(vector<int> v) {
+    SegmentTree(vector<ll> v) {
         // 最下段のノード数は元配列のサイズ以上になる最小の 2 冪 -> これを n とおく
         // セグメント木全体で必要なノード数は 2n-1 個である
         int sz = v.size();
@@ -69,7 +69,7 @@ public:
         for (int i = n - 2;i >= 0;i--)node[i] = (node[2 * i + 1] + node[2 * i + 2]);
     }
 
-    void update(int x, int val) {
+    void update(int x, ll val) {
         // 最下段のノードにアクセスする
         x += (n - 1);
 
@@ -83,7 +83,7 @@ public:
     // 要求区間 [a, b) 中の要素の最小値を答える
     // k := 自分がいるノードのインデックス
     // 対象区間は [l, r) にあたる
-    int getsum(int a, int b, int k = 0, int l = 0, int r = -1) {
+    ll getsum(int a, int b, int k = 0, int l = 0, int r = -1) {
         if (r < 0)r = n;
         if (r <= a || b <= l) return 0;
 
@@ -92,8 +92,8 @@ public:
         // 要求区間が対象区間の一部を被覆 -> 子について探索を行う
         // 左側の子を vl ・ 右側の子を vr としている
         // 新しい対象区間は、現在の対象区間を半分に割ったもの
-        int vl = getsum(a, b, 2 * k + 1, l, (l + r) / 2);
-        int vr = getsum(a, b, 2 * k + 2, (l + r) / 2, r);
+        ll vl = getsum(a, b, 2 * k + 1, l, (l + r) / 2);
+        ll vr = getsum(a, b, 2 * k + 2, (l + r) / 2, r);
 
         return (vl + vr);
     }
