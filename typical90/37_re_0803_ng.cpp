@@ -38,7 +38,6 @@ public:
         }
     }
 
-    // [a,b)
     void update(int a, int b, ll x, int k = 0, int l = 0, int r = -1) {
         if (r < 0) r = n;
         lazyEvaluate(k, l, r);
@@ -58,7 +57,7 @@ public:
     ll find(int a, int b, int k = 0, int l = 0, int r = -1) {
         if (r < 0) r = n;
         lazyEvaluate(k, l, r);
-        if (b <= l || r <= a) return -1;
+        if (b <= l || r <= a) return -(1 << 16);
         if (a <= l && r <= b) return node[k];
         ll vl = find(a, b, 2 * k + 1, l, (l + r) / 2);
         ll vr = find(a, b, 2 * k + 2, (l + r) / 2, r);
@@ -69,25 +68,27 @@ public:
 int main()
 {
     int W, N;cin >> W >> N;
-    vector<LazySegmentTree> trees(N + 1, LazySegmentTree(vector<ll>(10010, -1)));
-    vector<vector<ll>> dp(N + 1, vector<ll>(10010, -1));
+    int max_w = 10000;int max_n = 500;ll M_INF = -(1 << 16);
+    vector<LazySegmentTree> trees(max_n + 1, LazySegmentTree(vector<ll>(max_w + 10, M_INF)));
+    vector<vector<ll>> dp(max_n + 1, vector<ll>(max_w + 10, M_INF));
     dp[0][0] = 0;
     trees[0].update(0, 1, 0);
     for (int i = 0;i < N;i++) {
         int l, r;ll  v;cin >> l >> r >> v;
-        for (int j = 0;j <= 10000;j++) {
-            if (dp[i][j] == -1)continue;
-            int left = j + l;int right = j + r;
-            if (left > 10000)continue;
-            right = min(10000, right);
-            trees[i + 1].update(left, right + 1, (dp[i][j] + v));
+        for (int j = 0;j <= max_w;j++) {
+            dp[i + 1][j] = max(dp[i + 1][j], dp[i][j]);
+            int left = max(j - r, 0);int right = max(j - l + 1, 0);
+            if (left == right)continue;
+            ll tmp = trees[i].find(left, right);
+            if (tmp == M_INF)continue;
+            dp[i + 1][j] = max(dp[i + 1][j], tmp + v);
         }
-        for (int j = 0;j <= 10000;j++) {
-            ll t = trees[i + 1].find(j, j + 1);
-            dp[i + 1][j] = max(t, dp[i][j]);
+
+        for (int j = 0;j <= max_w;j++) {
+            trees[i + 1].update(j, j + 1, dp[i + 1][j]);
         }
     }
-    if (dp[N][W] == -1) {
+    if (dp[N][W] == M_INF) {
         cout << -1 << endl;
     }
     else {
