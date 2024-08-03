@@ -114,7 +114,7 @@ public:
     }
 
     // [a,b)
-    void update(int a, int b, int x, int k = 0, int l = 0, int r = -1) {
+    void update(int a, int b, ll x, int k = 0, int l = 0, int r = -1) {
         if (r < 0) r = n;
         lazyEvaluate(k, l, r);
         if (b <= l || r <= a) return;
@@ -130,13 +130,13 @@ public:
         }
     }
 
-    int find(int a, int b, int k = 0, int l = 0, int r = -1) {
+    ll find(int a, int b, int k = 0, int l = 0, int r = -1) {
         if (r < 0) r = n;
         lazyEvaluate(k, l, r);
         if (b <= l || r <= a) return INF;
         if (a <= l && r <= b) return node[k];
-        int vl = find(a, b, 2 * k + 1, l, (l + r) / 2);
-        int vr = find(a, b, 2 * k + 2, (l + r) / 2, r);
+        ll vl = find(a, b, 2 * k + 1, l, (l + r) / 2);
+        ll vr = find(a, b, 2 * k + 2, (l + r) / 2, r);
         return min(vl, vr);
     }
 };
