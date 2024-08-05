@@ -5,7 +5,7 @@ using P = pair<int, int>;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 vector<ll> dp;
 
-void dfs(int v, int pre, vector<vector<int>> graph) {
+void dfs(int v, int pre, vector<vector<int>>& graph) {
     dp[v] = 1;
     for (auto nv : graph[v]) {
         if (nv == pre)continue;
