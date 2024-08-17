@@ -15,12 +15,12 @@ int main()
     rep(i, H)rep(j, W) {
         cin >> grid[i][j];
     }
-    vector<vector<int>> dist(H, vector<int>(W, 10000000));
-    queue<vector<int>> q;
-    q.push(vector<int>{sx, sy, -1});
+    vector<vector<int>> dist(H, vector<int>(W, 1012345678));
+    deque<vector<int>> q;
+    q.push_front(vector<int>{sx, sy, -1});
     dist[sx][sy] = 0;
     while (!q.empty()) {
-        vector<int> t = q.front();q.pop();
+        vector<int> t = q.front();q.pop_front();
         int x = t[0];int y = t[1];int pre = t[2];
         for (int i = 0;i < 4;i++) {
             int nx = x + dx[i];int ny = y + dy[i];
@@ -31,7 +31,12 @@ int main()
             if (i != pre && pre != -1)nextCnt++;
             if (nextCnt >= dist[nx][ny])continue;
             dist[nx][ny] = nextCnt;
-            q.push(vector<int>{ nx, ny, i});
+            if (i != pre) {
+                q.push_back(vector<int>{ nx, ny, i});
+            }
+            else {
+                q.push_front(vector<int>{nx, ny, i});
+            }
         }
     }
 
