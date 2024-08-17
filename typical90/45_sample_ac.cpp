@@ -39,6 +39,8 @@ int main()
             int div_bit = bit;
             while (div_bit != 0) {
                 int div_bit2 = bit ^ div_bit;
+                // ここはdivbit2,divbitはチェンジしてはいけない。今の条件ではdivbit0の時に処理が進まないため.
+                // そのため、whileの条件を変更し処理が進むようにすればOK
                 ll x = max(dp[k][div_bit2], cost[div_bit]);
                 dp[k + 1][bit] = min(dp[k + 1][bit], x);
                 div_bit = (div_bit - 1) & bit;
