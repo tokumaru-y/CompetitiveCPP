@@ -32,6 +32,7 @@ int main()
             int nextCnt = dist[x][y][pre] + (i != pre ? 1 : 0);
             if (dist[nx][ny][i] > nextCnt) {
                 dist[nx][ny][i] = nextCnt;
+                // なぜこの条件分岐が必要かは、この記事がわかり易い。https://betrue12.hateblo.jp/entry/2018/12/08/000020
                 if (i != pre)q.push_back({ nx,ny,i });
                 else q.push_front({ nx,ny,i });
             }
