@@ -12,8 +12,8 @@ int main()
     int N;cin >> N;
     vector<ll>A(N);vector<ll>B(N);vector<ll>C(N);
     rep(i, N)cin >> A[i];rep(i, N)cin >> B[i];rep(i, N)cin >> C[i];
-    vector<int>ACnt(46, 0);    vector<int>BCnt(46, 0);
-    vector<int>CCnt(46, 0);
+    vector<ll>ACnt(46, 0);    vector<ll>BCnt(46, 0);
+    vector<ll>CCnt(46, 0);
     ll dif = 0;ll AZero = 0, BZero = 0, CZero = 0;
     for (int i = 0;i < N;i++) {
         ll a = A[i];ll b = B[i]; ll c = C[i];
@@ -32,7 +32,7 @@ int main()
         }
     }
 
-    ans -= AZero * BZero * CZero;
+    // ans -= AZero * BZero * CZero;
 
     cout << ans << endl;
 }
