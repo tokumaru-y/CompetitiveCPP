@@ -43,6 +43,8 @@ int main()
                 // そのため、whileの条件を変更し処理が進むようにすればOK
                 ll x = max(dp[k][div_bit2], cost[div_bit]);
                 dp[k + 1][bit] = min(dp[k + 1][bit], x);
+                // 立っているbit列のみを列挙していきたい。そのテクニックとして1引いて元々のbit列との論理積を取っている。
+                // 1引いているのは、最低ビットが消えてそれより下のビットが立つため。
                 div_bit = (div_bit - 1) & bit;
             }
         }
