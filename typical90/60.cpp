@@ -8,6 +8,8 @@ int N;
 vector<int>A;
 vector<int>LIS1;
 vector<int>LIS2;
+vector<int> ans1;
+vector<int>ans2;
 int MAX_NUM = 5000000;
 
 
@@ -20,7 +22,7 @@ void input() {
 
 void solve() {
     LIS1.resize(N + 1, MAX_NUM);LIS2.resize(N + 1, MAX_NUM);
-    vector<int> ans1(N + 1);vector<int> ans2(N + 1);
+    ans1.resize(N + 1);ans2.resize(N + 1);
     rep(i, N) {
         int target = A[i];
         auto ind = lower_bound(LIS1.begin(), LIS1.end(), target) - LIS1.begin();
@@ -33,16 +35,15 @@ void solve() {
         LIS2[ind] = target;
         ans2[i] = ind + 1;
     }
+}
 
+void output() {
     int t = 0;
     rep(i, N) {
         t = max(t, ans1[i] + ans2[i] - 1);
     }
     cout << t << endl;
-
 }
-
-void output() {}
 
 int main()
 {
