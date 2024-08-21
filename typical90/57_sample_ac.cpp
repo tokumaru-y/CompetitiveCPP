@@ -7,7 +7,7 @@ vector<int> dy{ 0, 1, 0, -1 };
 int N, M;
 vector<vector<int>> D;
 vector<int>S;
-int pos = 0;
+int switchNum = 0;
 
 void input() {
     cin >> N >> M;
@@ -24,12 +24,12 @@ void input() {
 }
 
 void solve() {
-    rep(i, M) {
+    rep(panel, M) {
         bool found = false;
-        for (int j = pos;j < N;j++) {
-            if (D[j][i] == 1) {
-                if (j != pos) {
-                    swap(D[j], D[pos]);
+        for (int j = switchNum;j < N;j++) {
+            if (D[j][panel] == 1) {
+                if (j != switchNum) {
+                    swap(D[j], D[switchNum]);
                 }
                 found = true;break;
             }
@@ -37,20 +37,20 @@ void solve() {
 
         if (found) {
             rep(j, N) {
-                if (j != pos && D[j][i] == 1) {
-                    for (int k = i;k < M;k++) {
-                        D[j][k] ^= D[pos][k];
+                if (j != switchNum && D[j][panel] == 1) {
+                    for (int k = panel;k < M;k++) {
+                        D[j][k] ^= D[switchNum][k];
                     }
                 }
             }
 
-            if (S[i] == 1) {
-                for (int j = i;j < M;j++) {
-                    S[j] ^= D[pos][j];
+            if (S[panel] == 1) {
+                for (int j = panel;j < M;j++) {
+                    S[j] ^= D[switchNum][j];
                 }
             }
 
-            pos++;
+            switchNum++;
         }
     }
 }
@@ -58,7 +58,7 @@ void solve() {
 void output() {
     if (S == vector<int>(M, 0)) {
         int ans = 1;
-        for (int i = pos;i < N;i++) {
+        for (int i = switchNum;i < N;i++) {
             ans = ans * 2 % 998244353;
         }
         cout << ans << endl;
