@@ -1,5 +1,13 @@
 {
     "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 4 }",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "[cpp]": {
+        "editor.tabSize": 4,
+    },
+    "clang-tidy.checks": [
+        "modernize-*"
+    ],
     "code-runner.executorMap": {
         "c": "cd $dir && gcc $fileName -o ../program && ../program",
         "cpp": "cd $dir && g++ $fileName -o ../program && ../program"
