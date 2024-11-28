@@ -28,7 +28,7 @@ void solve() {
         }
         ll free_digits = 0;
         for(ll j =0; j<D;j++){
-            if((bit_num & (1<<j)) == 0) {
+            if((bit_num & (1LL << j)) == 0) {
                 free_digits++;
             }
         }
