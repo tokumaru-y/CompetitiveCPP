@@ -49,7 +49,7 @@ ll get_boader(ll cnts) {
 void solve() {
     ll L = get_boader(K);
     ll R = get_boader(K-1);
-    if(R - L >= 200000000LL) cout << "Infinity" << endl;
+    if(R - L >= 2000000000LL) cout << "Infinity" << endl;
     else cout << R - L << endl;
 }
 
