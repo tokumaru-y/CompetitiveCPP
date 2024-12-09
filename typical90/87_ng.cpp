@@ -14,7 +14,7 @@ void input() {
         for(int j=1;j<=N;j++)cin >> A[i][j];
     }
 }
-
+// lens以下の最小経路のコストはいくつありますか？
 int count_number(long long lens) {
 	for (int i = 1; i <= N; i++) {
 		for (int j = 1; j <= N; j++) {
@@ -36,20 +36,21 @@ int count_number(long long lens) {
 	return cnt;
 }
 ll get_boader(ll cnts) {
-    long long cl = 1, cr = 5000000000LL, cm, minx = 5000000000LL;
-    for(int i=0;i<40;i++){
-        cm = (cl + cr) / 2LL;
+    long long ng = 0, ok = 5000000001LL, cm;
+    while( ok - ng > 1){
+        cm = (ng + ok) / 2LL;
         ll res = count_number(cm);
-        if(res <= cnts) { cr = cm; minx = min(minx, cm);}
-        else { cl = cm; }
+        if(res <= cnts) { ok = cm;}
+        else { ng = cm; }
     }
-    return minx ;
+    return ok;
 }
 
 void solve() {
     ll L = get_boader(K);
     ll R = get_boader(K-1);
-    if(R - L >= 2000000000LL) cout << "Infinity" << endl;
+    // 1000000000LL以上であれば、無限大（探索範囲外
+    if(R - L >= 1100000000LL)cout << "Infinity" << endl;
     else cout << R - L << endl;
 }
 
