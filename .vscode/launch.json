@@ -5,29 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Launch",
-            "type": "cppdbg",
+            "name": "(lldb) Launch",
+            "type": "lldb",  // cppdbgから変更
             "request": "launch",
-            "program": "${workspaceFolder}/program",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry":true,
             "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
-        },
+            "externalConsole": true,
+            "MIMode": "lldb",
+            "preLaunchTask": "g++ build active file"
+        }
         // {
         //     "name": "(gdb) Launch",
         //     "type": "cppdbg",

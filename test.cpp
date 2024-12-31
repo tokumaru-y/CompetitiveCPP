@@ -16,4 +16,5 @@ int main()
     input();
     solve();
     output();
+    cout << "hello" << endl;
 }

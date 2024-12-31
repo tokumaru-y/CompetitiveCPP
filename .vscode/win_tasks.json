@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-std=c++17",
+                "-Wall",
+                "-Wextra",
+                "-o",
+                "'${workspaceFolder}/program'",
+                "'${file}'"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "cppbuild",
+            "label": "build cpp",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-std=c++17",
+                "-O0",
+                "-Wall",
+                "-D_GLIBCXX_DEBUG",
+                "-g",
+                "${file}",
+                "-o",
+                "${workspaceFolder}/program"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: /usr/bin/g++",
+            "presentation": {
+                "focus": true
+            }
+        },
+    ]
+}
