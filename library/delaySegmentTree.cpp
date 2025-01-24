@@ -7,9 +7,9 @@ using ll = long long;
 struct LazySegmentTree {
 private:
     int n;
-    vector<ll> node, lazy;
 
 public:
+    vector<ll> node, lazy;
     LazySegmentTree(vector<ll> v) {
         int sz = (int)v.size();
         n = 1; while (n < sz) n *= 2;
