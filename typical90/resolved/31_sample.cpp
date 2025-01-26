@@ -6,6 +6,8 @@ vector<int> dx{ 1, 0, -1, 0 };
 vector<int> dy{ 0, 1, 0, -1 };
 int N;
 vector<int> W,B;
+// grundy数：ゲームにおいて各盤面のgrundy数が0なら負けの盤面。それ以外の値であれば勝ちの盤面
+// grundy数の求め方は、その盤面から移動できるmexの最小値になる。
 int grundy[55][1600];
 
 void input() {
