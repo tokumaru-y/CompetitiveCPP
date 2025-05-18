@@ -50,7 +50,7 @@ void solve() {
     ll L = get_boader(K);
     ll R = get_boader(K-1);
     // 1000000000LL以上であれば、無限大（探索範囲外
-    if(R - L >= 1100000000LL)cout << "Infinity" << endl;
+    if(R - L > 1000000000LL)cout << "Infinity" << endl;
     else cout << R - L << endl;
 }
 
