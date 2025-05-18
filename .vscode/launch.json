@@ -1,41 +1,18 @@
 {
-    // IntelliSense を使用して利用可能な属性を学べます。
-    // 既存の属性の説明をホバーして表示します。
-    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "name": "(lldb) Launch",
-            "type": "lldb",  // cppdbgから変更
+            "type": "lldb",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "stopAtEntry":true,
+            "stopAtEntry": true,
             "environment": [],
             "externalConsole": true,
             "MIMode": "lldb",
-            "preLaunchTask": "g++ build active file"
+            "preLaunchTask": "c++ build active file"
         }
-        // {
-        //     "name": "(gdb) Launch",
-        //     "type": "cppdbg",
-        //     "request": "launch",
-        //     "program": "${workspaceRoot}/program",
-        //     "args": [],
-        //     "environment": [],
-        //     "cwd": "${workspaceFolder}",
-        //     "stopAtEntry": false,
-        //     "externalConsole": true,
-        //     "MIMode": "gdb",
-        //     "miDebuggerPath": "c:\\mingw\\bin\\gdb.exe",
-        //     "setupCommands": [
-        //         {
-        //             "description": "Enable pretty-printing for gdb",
-        //             "text": "-enable-pretty-printing",
-        //             "ignoreFailures": true
-        //         }
-        //     ]
-        // }
     ]
 }
